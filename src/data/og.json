@@ -1,0 +1,20 @@
+{
+ "accent": "#9B1B30",
+ "symbol": "%",
+ "variants": [
+  {
+   "file": "og-fr.png",
+   "title": "CELI, REER ou CELIAPP en 2026\nvos droits et le bon choix",
+   "subtitle": "Droits cumulés · remboursement par province · Québec · RAP · REEP",
+   "badge": "Plafonds 2026 : 7 000 $ · 33 810 $ · 8 000 $",
+   "brand": "CELI ou REER"
+  },
+  {
+   "file": "og-en.png",
+   "title": "TFSA, RRSP or FHSA in 2026\nyour room and the right choice",
+   "subtitle": "Cumulative room · refund by province · Quebec · HBP · LLP",
+   "badge": "2026 limits: $7,000 · $33,810 · $8,000",
+   "brand": "TFSA or RRSP"
+  }
+ ]
+}

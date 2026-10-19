@@ -1,0 +1,687 @@
+{
+  "_lisezmoi": "Tous les paramètres du site (RECETTE §4). Chaque valeur a été relue le 2026-10-19 sur la source citée dans « src » (clé de « sources »), sauf mention « verification ». Aucun chiffre ne s'écrit en dur dans une page : les pages lisent ce fichier par le kit (src/lib/kit.ts).",
+  "year": 2026,
+  "retrieved_at": "2026-10-19",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "tfsa": {
+    "src": "cra_limits",
+    "limits": {
+      "2009": 5000,
+      "2010": 5000,
+      "2011": 5000,
+      "2012": 5000,
+      "2013": 5500,
+      "2014": 5500,
+      "2015": 10000,
+      "2016": 5500,
+      "2017": 5500,
+      "2018": 5500,
+      "2019": 6000,
+      "2020": 6000,
+      "2021": 6000,
+      "2022": 6000,
+      "2023": 6500,
+      "2024": 7000,
+      "2025": 7000,
+      "2026": 7000
+    },
+    "firstYear": 2009,
+    "ageMin": 18,
+    "excessTaxMonthly": 0.01,
+    "nonResidentTaxMonthly": 0.01,
+    "indexedRoundTo": 500,
+    "limit2027": null,
+    "limit2027Note": {
+      "fr": "Le plafond 2027 n'est pas encore publié : l'Agence du revenu du Canada l'annonce d'habitude à la fin de novembre. Le simulateur l'ajoutera le jour de l'annonce.",
+      "en": "The 2027 limit is not published yet: the Canada Revenue Agency usually announces it in late November. The calculator will add it the day it is announced."
+    },
+    "rules_src": "rc4466"
+  },
+  "rrsp": {
+    "src": "cra_limits",
+    "dollarLimit": {
+      "2022": 29210,
+      "2023": 30780,
+      "2024": 31560,
+      "2025": 32490,
+      "2026": 33810,
+      "2027": 35390
+    },
+    "earnedIncomeRate": 0.18,
+    "overCushion": 2000,
+    "excessTaxMonthly": 0.01,
+    "lastContributionAge": 71,
+    "deadline": {
+      "2025": "2026-03-02",
+      "2026": "2027-03-01"
+    },
+    "deadlineNote": {
+      "fr": "Pour l'année 2026, la Loi de l'impôt sur le revenu admet les cotisations versées dans les 60 jours qui suivent la fin de l'année : le 60e jour de 2027 tombe le lundi 1er mars 2027.",
+      "en": "For 2026, the Income Tax Act accepts contributions made in the 60 days after the end of the year: the 60th day of 2027 is Monday, March 1, 2027."
+    },
+    "withholding": {
+      "src": "cra_withholding",
+      "bands": [
+        5000,
+        15000
+      ],
+      "rates": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "ratesQcFederal": [
+        0.05,
+        0.1,
+        0.15
+      ],
+      "nonResident": 0.25
+    },
+    "spousalAttributionYears": 3
+  },
+  "fhsa": {
+    "src": "cra_fhsa",
+    "annual": 8000,
+    "lifetime": 40000,
+    "carryMax": 8000,
+    "ageMin": 18,
+    "ageMaxOpen": 71,
+    "maxYears": 15,
+    "excessTaxMonthly": 0.01
+  },
+  "hbp": {
+    "src": "cra_hbp",
+    "limit": 60000,
+    "repayYears": 15,
+    "normalDelay": 2,
+    "reliefDelay": 5,
+    "reliefFrom": 2022,
+    "reliefTo": 2028
+  },
+  "llp": {
+    "src": "cra_llp",
+    "annual": 10000,
+    "total": 20000,
+    "repayYears": 10
+  },
+  "federal": {
+    "src": "cra_rates_2026",
+    "brackets": [
+      58523,
+      117045,
+      181440,
+      258482
+    ],
+    "rates": [
+      0.14,
+      0.205,
+      0.26,
+      0.29,
+      0.33
+    ],
+    "creditRate": 0.14,
+    "bpaMax": 16452,
+    "bpaMin": 14829,
+    "bpa_src": "cra_indexation",
+    "qcAbatement": 0.165,
+    "qcAbatement_src": "t4127_jul"
+  },
+  "provinces": {
+    "NL": {
+      "brackets": [
+        44678,
+        89354,
+        159528,
+        223340,
+        285319,
+        570638,
+        1141275
+      ],
+      "rates": [
+        0.087,
+        0.145,
+        0.158,
+        0.178,
+        0.198,
+        0.208,
+        0.213,
+        0.218
+      ],
+      "bpa": 13094,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul",
+      "fact": "bpa_raise"
+    },
+    "PE": {
+      "brackets": [
+        33928,
+        65820,
+        106890,
+        142520,
+        200000
+      ],
+      "rates": [
+        0.095,
+        0.1347,
+        0.166,
+        0.1762,
+        0.19,
+        0.2
+      ],
+      "bpa": 15000,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jan",
+      "fact": "new_bracket"
+    },
+    "NS": {
+      "brackets": [
+        30995,
+        61991,
+        97417,
+        157124
+      ],
+      "rates": [
+        0.0879,
+        0.1495,
+        0.1667,
+        0.175,
+        0.21
+      ],
+      "bpa": 11932,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul"
+    },
+    "NB": {
+      "brackets": [
+        52333,
+        104666,
+        193861
+      ],
+      "rates": [
+        0.094,
+        0.14,
+        0.16,
+        0.195
+      ],
+      "bpa": 13664,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul"
+    },
+    "QC": {
+      "brackets": [
+        54345,
+        108680,
+        132245
+      ],
+      "rates": [
+        0.14,
+        0.19,
+        0.24,
+        0.2575
+      ],
+      "bpa": 18952,
+      "src": "rq_rates",
+      "bpa_src": "mb_budget_2026",
+      "verification": "Montant personnel de base (18 952 $) et taux supérieur (25,75 %) lus dans le tableau interprovincial du budget 2026 du Manitoba ; tranches à relire sur revenuquebec.ca, dont le site refuse les robots (403) le 2026-10-19."
+    },
+    "ON": {
+      "brackets": [
+        53891,
+        107785,
+        150000,
+        220000
+      ],
+      "rates": [
+        0.0505,
+        0.0915,
+        0.1116,
+        0.1216,
+        0.1316
+      ],
+      "bpa": 12989,
+      "surtax": [
+        [
+          5818,
+          0.2
+        ],
+        [
+          7446,
+          0.36
+        ]
+      ],
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul"
+    },
+    "MB": {
+      "brackets": [
+        47000,
+        100000
+      ],
+      "rates": [
+        0.108,
+        0.1275,
+        0.174
+      ],
+      "bpa": 15780,
+      "bpaPhase": [
+        200000,
+        400000
+      ],
+      "src": "t4127_jan",
+      "bpa_src": "t4127_jan",
+      "verification": "La page des taux 2026 de canada.ca (modifiée le 2026-06-25) affiche 47 564 $ et 101 200 $ ; le guide T4127 (janvier et juillet 2026) et le budget 2025 du Manitoba disent que les tranches ne sont plus indexées depuis 2025 (47 000 $ et 100 000 $), et le budget 2026 n'annonce aucune réindexation. Le site retient 47 000 $ et 100 000 $."
+    },
+    "SK": {
+      "brackets": [
+        54532,
+        155805
+      ],
+      "rates": [
+        0.105,
+        0.125,
+        0.145
+      ],
+      "bpa": 20381,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jan"
+    },
+    "AB": {
+      "brackets": [
+        61200,
+        154259,
+        185111,
+        246813,
+        370220
+      ],
+      "rates": [
+        0.08,
+        0.1,
+        0.12,
+        0.13,
+        0.14,
+        0.15
+      ],
+      "bpa": 22769,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul"
+    },
+    "BC": {
+      "brackets": [
+        50363,
+        100728,
+        115648,
+        140430,
+        190405,
+        265545
+      ],
+      "rates": [
+        0.056,
+        0.077,
+        0.105,
+        0.1229,
+        0.147,
+        0.168,
+        0.205
+      ],
+      "bpa": 13216,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul"
+    },
+    "YT": {
+      "brackets": [
+        58523,
+        117045,
+        181440,
+        500000
+      ],
+      "rates": [
+        0.064,
+        0.09,
+        0.109,
+        0.128,
+        0.15
+      ],
+      "bpaFederal": true,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul"
+    },
+    "NT": {
+      "brackets": [
+        53003,
+        106009,
+        172346
+      ],
+      "rates": [
+        0.059,
+        0.086,
+        0.122,
+        0.1405
+      ],
+      "bpa": 18198,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul"
+    },
+    "NU": {
+      "brackets": [
+        55801,
+        111602,
+        181439
+      ],
+      "rates": [
+        0.04,
+        0.07,
+        0.09,
+        0.115
+      ],
+      "bpa": 19659,
+      "src": "cra_rates_2026",
+      "bpa_src": "t4127_jul"
+    }
+  },
+  "provinceNames": {
+    "NL": {
+      "fr": "Terre-Neuve-et-Labrador",
+      "en": "Newfoundland and Labrador",
+      "frIn": "à Terre-Neuve-et-Labrador",
+      "short": "T.-N.-L."
+    },
+    "PE": {
+      "fr": "Île-du-Prince-Édouard",
+      "en": "Prince Edward Island",
+      "frIn": "à l'Île-du-Prince-Édouard",
+      "short": "Î.-P.-É."
+    },
+    "NS": {
+      "fr": "Nouvelle-Écosse",
+      "en": "Nova Scotia",
+      "frIn": "en Nouvelle-Écosse",
+      "short": "N.-É."
+    },
+    "NB": {
+      "fr": "Nouveau-Brunswick",
+      "en": "New Brunswick",
+      "frIn": "au Nouveau-Brunswick",
+      "short": "N.-B."
+    },
+    "QC": {
+      "fr": "Québec",
+      "en": "Quebec",
+      "frIn": "au Québec",
+      "short": "Qc"
+    },
+    "ON": {
+      "fr": "Ontario",
+      "en": "Ontario",
+      "frIn": "en Ontario",
+      "short": "Ont."
+    },
+    "MB": {
+      "fr": "Manitoba",
+      "en": "Manitoba",
+      "frIn": "au Manitoba",
+      "short": "Man."
+    },
+    "SK": {
+      "fr": "Saskatchewan",
+      "en": "Saskatchewan",
+      "frIn": "en Saskatchewan",
+      "short": "Sask."
+    },
+    "AB": {
+      "fr": "Alberta",
+      "en": "Alberta",
+      "frIn": "en Alberta",
+      "short": "Alb."
+    },
+    "BC": {
+      "fr": "Colombie-Britannique",
+      "en": "British Columbia",
+      "frIn": "en Colombie-Britannique",
+      "short": "C.-B."
+    },
+    "YT": {
+      "fr": "Yukon",
+      "en": "Yukon",
+      "frIn": "au Yukon",
+      "short": "Yn"
+    },
+    "NT": {
+      "fr": "Territoires du Nord-Ouest",
+      "en": "Northwest Territories",
+      "frIn": "aux Territoires du Nord-Ouest",
+      "short": "T.N.-O."
+    },
+    "NU": {
+      "fr": "Nunavut",
+      "en": "Nunavut",
+      "frIn": "au Nunavut",
+      "short": "Nt"
+    }
+  },
+  "provinceFacts": {
+    "src": "t4127_jul",
+    "bcLowestBefore": 0.0506,
+    "bcAnnounced": "2026-02-17",
+    "bcIndexPause": [
+      2027,
+      2030
+    ],
+    "nlBpaBefore": 11188,
+    "nlAnnounced": "2026-04-29",
+    "peTopAnnounced": "2026-04-14",
+    "peBpaBefore": 14650,
+    "skBpaStep": 500,
+    "mbFrozenSince": 2025,
+    "abLowestSince": 2025
+  },
+  "benefits": {
+    "ccb": {
+      "src": "cra_ccb",
+      "period": {
+        "fr": "juillet 2026 à juin 2027",
+        "en": "July 2026 to June 2027"
+      },
+      "incomeYear": 2025,
+      "thresholds": [
+        38237,
+        82847
+      ],
+      "rates": {
+        "1": [
+          0.07,
+          0.032
+        ],
+        "2": [
+          0.135,
+          0.057
+        ],
+        "3": [
+          0.19,
+          0.08
+        ],
+        "4": [
+          0.23,
+          0.095
+        ]
+      },
+      "maxUnder6": 8157,
+      "max6to17": 6883
+    },
+    "oas": {
+      "src": "esdc_oas_recovery",
+      "recoveryRate": 0.15,
+      "threshold": {
+        "2025": 93454,
+        "2026": 95323
+      }
+    },
+    "gis": {
+      "src": "esdc_gis",
+      "singleMax": 23112,
+      "coupleOasMax": 30528
+    }
+  },
+  "sources": {
+    "cra_limits": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/administrateurs-regimes-enregistres/fesp/plafonds-cd-reer-rpdb-celi-mgap.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : plafonds CD, PD, REER, RPDB, CELI, MGAP (page du 2025-12-01)",
+        "en": "Canada Revenue Agency: MP, DB, RRSP, DPSP, ALDA, TFSA limits and YMPE (page of 2025-12-01)"
+      }
+    },
+    "rc4466": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/compte-epargne-libre-impot.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/tax-free-savings-account.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : Compte d'épargne libre d'impôt (CELI), pages en vigueur (l'ancien guide RC4466 est annulé)",
+        "en": "Canada Revenue Agency: Tax-Free Savings Account (TFSA), current pages (former guide RC4466 cancelled)"
+      }
+    },
+    "cra_rates_2026": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/taux-imposition-tranches-revenu/annee-en-cours.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : taux d'imposition fédéral, provinciaux et territoriaux pour 2026 (page du 2026-06-25)",
+        "en": "Canada Revenue Agency: federal, provincial and territorial tax rates for 2026 (page of 2026-06-25)"
+      }
+    },
+    "t4127_jul": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/formulaires-publications/retenues-paie/t4127-formules-calcul-retenues-paie/t4127-jul/t4127-jul-formules-calcul-retenues-paie.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+      "label": {
+        "fr": "Guide T4127, Formules pour le calcul des retenues sur la paie, 123e édition, 1er juillet 2026",
+        "en": "Guide T4127, Payroll Deductions Formulas, 123rd edition, July 1, 2026"
+      }
+    },
+    "t4127_jan": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/formulaires-publications/retenues-paie/t4127-formules-calcul-retenues-paie/t4127-jan/t4127-jan-formules-calcul-informatise-retenues-paie.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+      "label": {
+        "fr": "Guide T4127, 122e édition, 1er janvier 2026 (Manitoba, Île-du-Prince-Édouard, Saskatchewan)",
+        "en": "Guide T4127, 122nd edition, January 1, 2026 (Manitoba, Prince Edward Island, Saskatchewan)"
+      }
+    },
+    "cra_indexation": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/foire-questions-particuliers/rajustement-montants-fonction-indexation-impot-particuliers-prestations.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : montants indexés 2026, dont le montant personnel de base fédéral",
+        "en": "Canada Revenue Agency: 2026 indexed amounts, including the federal basic personal amount"
+      }
+    },
+    "rq_rates": {
+      "url": "https://www.revenuquebec.ca/fr/citoyens/declaration-de-revenus/produire-votre-declaration-de-revenus/taux-dimposition/",
+      "url_en": "https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/",
+      "label": {
+        "fr": "Revenu Québec : taux d'imposition des particuliers",
+        "en": "Revenu Québec: personal income tax rates"
+      }
+    },
+    "mb_budget_2026": {
+      "url": "https://www.gov.mb.ca/asset_library/en/budget2026/budget2026.pdf",
+      "url_en": "https://www.gov.mb.ca/asset_library/en/budget2026/budget2026.pdf",
+      "label": {
+        "fr": "Budget 2026 du Manitoba, mesures fiscales et comparaison interprovinciale des taux 2026 (à jour au 19 mars 2026)",
+        "en": "Manitoba Budget 2026, tax measures and interprovincial comparison of 2026 rates (current as of March 19, 2026)"
+      }
+    },
+    "cra_rrsp_limit": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/reer-regimes-connexes/cotiser-a-reer-a-rpac-a/effet-vos-cotisations-maximum-deductible-votre-reer-rpac.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/contributing-a-rrsp-prpp/contributions-affect-your-rrsp-prpp-deduction-limit.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : effet de vos cotisations sur votre maximum déductible au titre des REER",
+        "en": "Canada Revenue Agency: how contributions affect your RRSP deduction limit"
+      }
+    },
+    "cra_rrsp_excess": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/reer-regimes-connexes/cotiser-a-reer-a-rpac-a/consequences-cotisations-excedentaires-a-votre-reer-rpac.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/contributing-a-rrsp-prpp/what-happens-you-over-your-rrsp-prpp-deduction-limit.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : cotisations excédentaires à un REER (marge de 2 000 $, impôt de 1 % par mois)",
+        "en": "Canada Revenue Agency: RRSP excess contributions ($2,000 cushion, 1% tax per month)"
+      }
+    },
+    "cra_rrsp_dates": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/reer-regimes-connexes/dates-importantes-reer-reei-reep.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/important-dates-rrsp-rrif-rdsp.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : dates importantes pour les REER",
+        "en": "Canada Revenue Agency: important dates for RRSPs"
+      }
+    },
+    "cra_withholding": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/reer-regimes-connexes/faire-retrait/taux-retenue.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/making-withdrawals/tax-rates-on-withdrawals.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : taux de retenue d'impôt sur les retraits d'un REER",
+        "en": "Canada Revenue Agency: tax rates on RRSP withdrawals"
+      }
+    },
+    "cra_spousal": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/reer-regimes-connexes/faire-retrait/retraits-reer-profit-epoux-conjoint-fait.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/making-withdrawals/withdrawing-spousal-common-law-partner-rrsps.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : retraits d'un REER au profit de l'époux ou du conjoint de fait",
+        "en": "Canada Revenue Agency: withdrawing from spousal or common-law partner RRSPs"
+      }
+    },
+    "cra_fhsa": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/compte-epargne-libre-impot-achat-premiere-propriete/cotiser-un-celiapp.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/contributing-your-fhsa.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : cotiser à vos CELIAPP et calculer vos droits de participation",
+        "en": "Canada Revenue Agency: participating in your FHSAs and calculating your participation room"
+      }
+    },
+    "cra_fhsa_open": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/compte-epargne-libre-impot-achat-premiere-propriete/ouvrir-vos-celiapp.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account/opening-your-fhsas.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : ouvrir un CELIAPP (âge, résidence, premier acheteur)",
+        "en": "Canada Revenue Agency: opening your FHSAs (age, residence, first-time home buyer)"
+      }
+    },
+    "cra_hbp": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/reer-regimes-connexes/est-regime-accession-a-propriete.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/what-home-buyers-plan.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : le Régime d'accession à la propriété (RAP), limite de 60 000 $ et allègement prolongé (page du 2026-02-17)",
+        "en": "Canada Revenue Agency: the Home Buyers' Plan (HBP), $60,000 limit and extended relief (page of 2026-02-17)"
+      }
+    },
+    "cra_llp": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/impot/particuliers/sujets/reer-regimes-connexes/regime-encouragement-a-education-permanente/comment-participer-reep.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/lifelong-learning-plan/participate.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : participer au Régime d'encouragement à l'éducation permanente (REEP)",
+        "en": "Canada Revenue Agency: participating in the Lifelong Learning Plan (LLP)"
+      }
+    },
+    "cra_ccb": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/prestations-enfants-familles/allocation-canadienne-enfants/combien-recevoir.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-we-calculate-your-ccb.html",
+      "label": {
+        "fr": "Agence du revenu du Canada : calcul de l'allocation canadienne pour enfants, juillet 2026 à juin 2027",
+        "en": "Canada Revenue Agency: how the Canada child benefit is calculated, July 2026 to June 2027"
+      }
+    },
+    "esdc_oas_recovery": {
+      "url": "https://www.canada.ca/fr/services/prestations/pensionspubliques/securite-vieillesse/impot-recuperation.html",
+      "url_en": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/recovery-tax.html",
+      "label": {
+        "fr": "Gouvernement du Canada : impôt de récupération de la pension de la Sécurité de la vieillesse",
+        "en": "Government of Canada: Old Age Security pension recovery tax"
+      }
+    },
+    "esdc_gis": {
+      "url": "https://www.canada.ca/fr/services/prestations/pensionspubliques/securite-vieillesse/supplement-revenu-garanti/admissibilite.html",
+      "url_en": "https://www.canada.ca/en/services/benefits/publicpensions/old-age-security/guaranteed-income-supplement/eligibility.html",
+      "label": {
+        "fr": "Gouvernement du Canada : admissibilité au Supplément de revenu garanti et seuils de revenu",
+        "en": "Government of Canada: Guaranteed Income Supplement eligibility and income thresholds"
+      }
+    }
+  }
+}

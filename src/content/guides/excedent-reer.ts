@@ -1,0 +1,85 @@
+import { defineGuide } from '../../lib/page-types';
+import { KIT as K } from '../../lib/kit';
+
+const F = K.fr, E = K.en, Y = K.YEAR;
+const cushion = K.P.rrsp.overCushion, monthly = K.P.rrsp.excessTaxMonthly;
+// Exemple du simulateur : maximum déductible de 10 000 $, 13 500 $ de cotisations non déduites.
+const LIM = 10000;
+const ex = K.rrspExcess(LIM, 13500);
+const overs = [1500, 2000, 3000, 5000, 10000, 20000];
+const tbl = overs.map((o) => ({ o, e: K.rrspExcess(LIM, LIM + o) }));
+// Retrait de l'excédent sans formulaire T3012A : retenue à la source sur 3 500 $.
+const wh = K.withholding(ex.over, false);
+// Facteur d'équivalence oublié : 60 000 $ de salaire, 4 000 $ de FE.
+const noPA = K.rrspRoom({ earnedPrevYear: 60000 }), withPA = K.rrspRoom({ earnedPrevYear: 60000, pensionAdjustment: 4000 });
+const paEx = K.rrspExcess(withPA.limit, noPA.limit + 3000);
+
+export default defineGuide({
+  id: 'excedent-reer', group: 'reer', order: 14, tool: 'excedentReer',
+  related: ['plafond-reer', 'date-limite-reer', 'retrait-reer', 'excedent-celi', 'remboursement-reer'],
+  sources: ['cra_rrsp_excess', 'cra_rrsp_limit', 'cra_withholding'],
+  fr: {
+    slug: 'cotisation-excedentaire-reer',
+    nav: 'Cotisation excédentaire REER', card: `Marge de ${F.m(cushion)}, impôt de 1 % par mois au-delà, formulaire T1-OVP : comment calculer et corriger un excédent.`,
+    title: `Cotisation excédentaire REER ${Y} : impôt de 1 % par mois`,
+    description: `Cotisation excédentaire REER ${Y} : marge de ${F.m(cushion)}, puis 1 % par mois sur le surplus, T1-OVP dans les 90 jours. Calcul, retrait de l'excédent et cas du FE.`,
+    h1: `Cotisation excédentaire REER : combien coûte un dépassement ?`,
+    intro: 'Entrez le maximum déductible de votre dernier avis de cotisation, le total de vos cotisations non déduites et le nombre de mois avant de corriger : le simulateur calcule l’impôt mensuel.',
+    resume: `Une cotisation excédentaire REER n'est imposée qu'au-delà d'une marge de ${F.m(cushion)} : l'impôt est de 1 % par mois sur la partie de vos cotisations non déduites qui dépasse votre maximum déductible de plus de ${F.m(cushion)}. Avec un maximum de ${F.m(LIM)} et ${F.m(13500)} versés sans être déduits, le dépassement est de ${F.m(ex.over)}, la partie imposée de ${F.m(ex.taxed)} et l'impôt de ${F.m(ex.monthly)} par mois, tant que l'excédent reste dans le compte. La marge ne vaut que si vous aviez au moins 18 ans pendant l'année précédente. L'impôt se déclare sur le formulaire T1-OVP, à produire et à payer au plus tard 90 jours après la fin de l'année de l'excédent. La façon de l'arrêter est de retirer le surplus : le retrait s'ajoute au revenu, mais une déduction compensatoire est souvent possible. Les causes fréquentes sont un facteur d'équivalence qui réduit le maximum, des droits mal comptés ou des versements faits par l'employeur.`,
+    faqs: [
+      { q: 'Comment savoir si j’ai trop cotisé à mon REER ?', a: `Additionnez vos cotisations non déduites des années passées et celles de l'année en cours, puis comparez au maximum déductible de votre dernier avis de cotisation. Si l'écart dépasse ${F.m(cushion)}, vous avez un excédent imposable. L'avis de cotisation signale d'ailleurs ce risque quand vos cotisations inutilisées dépassent votre maximum. Les versements faits depuis le 1er janvier n'y figurent pas encore : comptez-les vous-même.` },
+      { q: 'Faut-il retirer une cotisation excédentaire REER ?', a: `C'est la façon directe d'arrêter l'impôt de 1 % par mois pour les mois suivants. Le retrait s'ajoute à votre revenu, mais vous pouvez souvent déduire un montant égal avec le formulaire T746. Avec le formulaire T3012A, approuvé d'avance par l'Agence, l'institution verse la somme sans retenue d'impôt. Attention : un retrait de l'excédent au titre du RAP ou du REEP peut laisser l'impôt de 1 % dû sur tout l'excédent.` },
+      { q: 'Peut-on faire annuler l’impôt sur un excédent REER ?', a: `Oui, si l'excédent vient d'une erreur raisonnable et que vous prenez des mesures pour l'éliminer. La demande se fait par écrit avec le formulaire RC2503, accompagnée de documents qui donnent le mois exact de chaque cotisation et de chaque retrait. Les reçus REER et les feuillets T4RSP ne suffisent pas, car ils n'indiquent pas ces mois. L'Agence décide au cas par cas.` },
+      { q: 'Qu’arrive-t-il si je produis le T1-OVP en retard ?', a: `Une pénalité de 1 % du solde dû s'ajoute pour chaque mois de retard, jusqu'à 12 mois, et elle peut être plus élevée si une pénalité a déjà été appliquée l'une des trois années précédentes. Des intérêts composés chaque jour courent à partir du 91e jour de l'année suivante sur l'impôt et la pénalité impayés. Ces frais s'ajoutent à l'impôt de 1 % par mois.` },
+    ],
+    body: (h) => `
+<h2>Le calcul de l'excédent</h2>
+<p>L'Agence du revenu du Canada compare deux montants, selon sa ${h.src('cra_rrsp_excess', 'page sur les cotisations excédentaires')} : d'un côté, vos cotisations non déduites des années passées plus celles de l'année civile en cours ; de l'autre, le maximum déductible de votre dernier avis de cotisation, de nouvelle cotisation ou du formulaire T1028, plus ${h.m(cushion)}. Ce qui dépasse est imposé à ${h.p(monthly, 0)} par mois. Les cotisations au REER de votre conjoint entrent dans votre propre calcul.</p>
+<p>La marge de ${h.m(cushion)} n'est accordée qu'aux personnes qui avaient 18 ans ou plus à un moment de l'année précédente. Pour un mineur qui a cotisé, le moindre dollar au-dessus du maximum est imposé.</p>
+${h.table(['Dépassement du maximum', 'Partie imposée', 'Impôt par mois', 'Sur 12 mois'], tbl.map((x) => [h.m(x.o), h.m(x.e.taxed), h.m(x.e.monthly), h.m(x.e.monthly * 12)]), `Personne de 18 ans ou plus. Impôt de ${h.p(monthly, 0)} par mois, calculé sur l’excédent de chaque mois.`, ['r', 'r', 'r', 'r'])}
+<p>L'impôt est mensuel. Un excédent créé en mars et retiré en octobre est imposé pour chaque mois où il est resté, et une cotisation retirée avant la fin du mois où elle a créé l'excédent n'est pas imposée pour ce mois. Chaque mois compte : corriger vite coûte moins cher que d'attendre la déclaration du printemps.</p>
+<h2>Le formulaire T1-OVP</h2>
+<p>Si vous devez l'impôt, il se déclare sur le T1-OVP, ou sa version simplifiée T1-OVP-S, à envoyer avec le paiement au plus tard 90 jours après la fin de l'année de l'excédent. Joignez des documents qui montrent le mois exact de chaque cotisation et de chaque retrait : les reçus et les feuillets T4RSP ne les donnent pas. Faute de ces mois, l'Agence place les cotisations des 60 premiers jours en janvier, celles du reste de l'année en mars, et les retraits en décembre, ce qui gonfle souvent le nombre de mois imposés.</p>
+<p>En retard, la pénalité est de 1 % du solde dû par mois, jusqu'à 12 mois, et des intérêts courent à partir du 91e jour de l'année suivante. Si l'excédent vient d'une erreur raisonnable, le formulaire RC2503 permet de demander l'annulation de l'impôt, à condition de montrer les mesures prises pour l'éliminer.</p>
+<h2>Retirer le surplus</h2>
+<p>Retirer l'excédent arrête l'impôt pour les mois qui suivent. Le retrait est un revenu imposable, mais vous pouvez déduire un montant égal si vous le retirez l'année de la cotisation, l'année suivante, ou l'année où vous recevez l'avis de cotisation de l'année de la cotisation ou la suivante, et si vous pensiez raisonnablement pouvoir déduire la somme ou ne l'avez pas versée dans le but de la retirer. Le formulaire T746 sert à calculer cette déduction.</p>
+<p>Sans autre démarche, l'institution applique la retenue habituelle : sur ${h.m(ex.over)}, c'est ${h.p(wh.rate, 0)}, soit ${h.m(wh.withheld)}, selon les ${h.src('cra_withholding', 'taux de retenue de l’Agence')} (le Québec a ses propres taux). Ce montant se réclame ensuite dans la déclaration, comme impôt déjà retenu. Le formulaire T3012A, approuvé par l'Agence avant le retrait, permet de sortir l'argent sans retenue. La page ${h.a('retrait-reer', 'retrait REER')} détaille l'impôt sur les autres retraits.</p>
+${h.mini('plafondReer', { t: 'Refaire le calcul de votre maximum', p: ['rg', 'fe', 'di'], c: 'Voir le détail du maximum déductible' })}
+<h2>Facteur d'équivalence et cotisations de l'employeur</h2>
+<p>Deux situations créent un excédent sans que la personne s'en rende compte. La première est le facteur d'équivalence d'un régime de retraite d'employeur, qui réduit le maximum de l'année suivante. Avec ${h.m(60000)} de salaire, les droits passent de ${h.m(noPA.limit)} à ${h.m(withPA.limit)} avec ${h.m(4000)} de facteur. Quelqu'un qui verse ${h.m(noPA.limit + 3000)} en se fiant au premier chiffre dépasse son maximum de ${h.m(paEx.over)} et paie ${h.m(paEx.monthly)} par mois. Un facteur pour services passés certifié après l'avis de cotisation peut aussi réduire le maximum en cours d'année : l'Agence envoie alors un formulaire T1028 avec le chiffre révisé. La page ${h.a('plafond-reer', 'plafond REER')} explique ces facteurs.</p>
+<p>La seconde est le versement fait au travail. Les cotisations à un régime de pension agréé collectif, y compris celles de l'employeur, comptent dans le calcul de l'excédent. Les montants admissibles d'un régime collectif peuvent échapper à l'impôt de 1 %. Quand les cotisations à un REER collectif ou à un tel régime sont obligatoires, il faut produire le T1-OVP complet avec une copie du contrat ou de la convention collective qui les rend obligatoires.</p>
+`,
+  },
+  en: {
+    slug: 'rrsp-over-contribution',
+    nav: 'RRSP over-contribution', card: `A ${E.m(cushion)} cushion, then 1% a month on the rest, Form T1-OVP: how to work out an excess and fix it.`,
+    title: `RRSP over-contribution ${Y}: the 1% monthly penalty tax`,
+    description: `RRSP over-contribution ${Y}: a ${E.m(cushion)} cushion, then 1% a month on the excess and Form T1-OVP within 90 days. Math, withdrawing it, pension adjustment.`,
+    h1: `RRSP over-contribution: what does going over cost?`,
+    intro: 'Enter the deduction limit from your latest notice of assessment, your total undeducted contributions and how many months before you fix it: the calculator works out the monthly tax.',
+    resume: `An RRSP over-contribution is only taxed beyond a ${E.m(cushion)} cushion: the tax is 1% a month on the part of your undeducted contributions that exceeds your deduction limit by more than ${E.m(cushion)}. With a ${E.m(LIM)} limit and ${E.m(13500)} contributed but not deducted, you are ${E.m(ex.over)} over, ${E.m(ex.taxed)} of that is taxed, and the tax is ${E.m(ex.monthly)} a month for as long as the excess stays in the plan. The cushion only applies if you were at least 18 at some point in the previous year. The tax is reported on Form T1-OVP, which must be filed and paid no later than 90 days after the end of the year of the excess. The way to stop it is to withdraw the surplus: the withdrawal is added to income, but an offsetting deduction is often available. Common causes are a pension adjustment that cuts your limit, room counted wrong, or contributions made by an employer.`,
+    faqs: [
+      { q: 'How do I know if I over-contributed to my RRSP?', a: `Add your undeducted contributions from past years to this year's contributions, then compare with the deduction limit on your latest notice of assessment. If you are more than ${E.m(cushion)} over, you have a taxable excess. The notice also warns you when your unused contributions exceed your limit. Contributions made since January 1 are not on it yet, so count those yourself.` },
+      { q: 'Should I withdraw an RRSP over-contribution?', a: `It is the direct way to stop the 1% monthly tax for the months that follow. The withdrawal is added to your income, but you can often deduct the same amount using Form T746. With Form T3012A, approved in advance by the CRA, the institution pays out the money with no tax withheld. Careful: taking the excess out under the HBP or LLP may still leave the 1% tax owing on all of it.` },
+      { q: 'Can the CRA waive the tax on an RRSP excess?', a: `Yes, if the excess came from a reasonable error and you are taking steps to remove it. You ask in writing with Form RC2503, along with documents showing the exact month of every contribution and withdrawal. RRSP receipts and T4RSP slips are not enough, since they do not show those months. The CRA decides case by case.` },
+      { q: 'What happens if I file the T1-OVP late?', a: `A penalty of 1% of the balance owing is added for each month late, up to 12 months, and it can be higher if you were charged a late-filing penalty in any of the three previous years. Interest compounded daily runs from the 91st day of the following year on unpaid tax and penalty. These costs come on top of the 1% monthly tax.` },
+    ],
+    body: (h) => `
+<h2>How the excess is worked out</h2>
+<p>The Canada Revenue Agency compares two amounts, according to its ${h.src('cra_rrsp_excess', 'page on excess contributions')}: on one side, your undeducted contributions from past years plus this calendar year's; on the other, the deduction limit on your latest notice of assessment, notice of reassessment or Form T1028, plus ${h.m(cushion)}. Whatever is above is taxed at ${h.p(monthly, 0)} a month. Contributions to your spouse's RRSP count in your own calculation.</p>
+<p>The ${h.m(cushion)} cushion is only for people who were 18 or older at some point in the previous year. For a minor who contributed, every dollar over the limit is taxed.</p>
+${h.table(['Amount over the limit', 'Part taxed', 'Tax a month', 'Over 12 months'], tbl.map((x) => [h.m(x.o), h.m(x.e.taxed), h.m(x.e.monthly), h.m(x.e.monthly * 12)]), `Person aged 18 or over. Tax of ${h.p(monthly, 0)} a month, on each month's excess.`, ['r', 'r', 'r', 'r'])}
+<p>The tax is monthly. An excess created in March and withdrawn in October is taxed for each month it stayed, and a contribution withdrawn before the end of the month in which it created the excess is not taxed for that month. Every month counts: fixing it quickly costs less than waiting for tax season.</p>
+<h2>Form T1-OVP</h2>
+<p>If you owe the tax, you report it on the T1-OVP, or its simplified version T1-OVP-S, sent with your payment no later than 90 days after the end of the year of the excess. Include documents showing the exact month of each contribution and withdrawal: receipts and T4RSP slips do not show them. Without those months, the CRA places contributions from the first 60 days in January, the rest of the year's in March, and withdrawals in December, which often adds taxed months.</p>
+<p>If you are late, the penalty is 1% of the balance owing per month, up to 12 months, and interest runs from the 91st day of the following year. If the excess came from a reasonable error, Form RC2503 lets you ask for the tax to be cancelled, provided you show the steps taken to remove it.</p>
+<h2>Withdrawing the surplus</h2>
+<p>Taking out the excess stops the tax for the months that follow. The withdrawal is taxable income, but you can deduct the same amount if you withdraw it in the year of the contribution, the following year, or the year you receive the notice of assessment for the contribution year or the year after, and if you reasonably expected to deduct the money or did not put it in intending to take it out. Form T746 works out that deduction.</p>
+<p>Without any other step, the institution applies the usual withholding: on ${h.m(ex.over)}, that is ${h.p(wh.rate, 0)}, or ${h.m(wh.withheld)}, under the ${h.src('cra_withholding', 'CRA withholding rates')} (Quebec has its own rates). You then claim it on your return as tax already withheld. Form T3012A, approved by the CRA before the withdrawal, lets the money come out with no withholding. The ${h.a('retrait-reer', 'RRSP withdrawal')} page covers tax on other withdrawals.</p>
+${h.mini('plafondReer', { t: 'Redo your deduction limit', p: ['rg', 'fe', 'di'], c: 'See the deduction limit in detail' })}
+<h2>Pension adjustments and employer contributions</h2>
+<p>Two situations create an excess without people noticing. The first is the pension adjustment from an employer pension plan, which lowers the next year's limit. With a ${h.m(60000)} salary, room drops from ${h.m(noPA.limit)} to ${h.m(withPA.limit)} with a ${h.m(4000)} adjustment. Someone who puts in ${h.m(noPA.limit + 3000)} relying on the first number is ${h.m(paEx.over)} over and pays ${h.m(paEx.monthly)} a month. A past service pension adjustment certified after the notice of assessment can also cut the limit during the year: the CRA then sends Form T1028 with the revised figure. The ${h.a('plafond-reer', 'RRSP limit')} page explains these adjustments.</p>
+<p>The second is money paid in at work. Contributions to a pooled registered pension plan, including the employer's, count when the excess is worked out. Qualifying group plan amounts can escape the 1% tax. When contributions to a group RRSP or such a plan are mandatory, you file the full T1-OVP with a copy of the contract or collective agreement that makes them mandatory.</p>
+`,
+  },
+});
