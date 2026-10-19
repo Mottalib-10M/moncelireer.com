@@ -99,6 +99,12 @@ export const averageOn = (amount: number, value: number) => (amount > 0 ? value 
 
 /** Seuils où le taux marginal combiné change, entre deux revenus (pour les pages par province). */
 export function rateSteps(p: Prov, max = 300000): Array<{ from: number; rate: number }> {
-  const pts = [...new Set([0, ...F.brackets, ...J[p].brackets, ...(J[p].bpaPhase ?? [])])].filter((x) => x < max).sort((a, b) => a - b);
+  // Seuils de la surtaxe (Ontario) : revenu où l'impôt provincial de base atteint chaque seuil, trouvé par dichotomie.
+  const sur = (J[p].surtax ?? []).map(([threshold]) => {
+    let lo = 0, hi = max;
+    for (let k = 0; k < 60; k++) { const mid = (lo + hi) / 2; const d = taxDetail(mid, p); if (d.provincial - d.surtax < threshold) lo = mid; else hi = mid; }
+    return Math.round(hi);
+  });
+  const pts = [...new Set([0, ...F.brackets, ...J[p].brackets, ...(J[p].bpaPhase ?? []), ...sur])].filter((x) => x < max).sort((a, b) => a - b);
   return pts.map((from) => ({ from, rate: marginalRate(from + 50, p, 50) }));
 }

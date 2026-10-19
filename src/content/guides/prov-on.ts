@@ -7,7 +7,7 @@ const sur = (O.surtax ?? []) as number[][];
 // Revenu imposable où chaque palier de surtaxe commence (recherche par pas de 10 $).
 const startOf = (thr: number) => { let x = 50000; while (x < 300000 && Math.max(0, K.taxDetail(x, 'ON').provincial - K.taxDetail(x, 'ON').surtax) <= thr) x += 10; return Math.round(x / 10) * 10; };
 const s1 = startOf(sur[0][0]), s2 = startOf(sur[1][0]);
-const steps = [...K.steps('ON', 260000).map((x) => x.from), s1, s2].sort((a, b) => a - b).map((from) => ({ from, rate: K.marginal(from + 50, 'ON', 50) }));
+const steps = K.steps('ON', 260000);
 const ex = [100000, 115000, 130000, 160000];
 const contrib10 = (h: { m: (x: number) => string; p: (x: number, d?: number) => string }) => ex.map((i) => { const d = K.taxDetail(i, 'ON'), a = K.taxDetail(i - 10000, 'ON'); return [h.m(i), h.p(K.marginal(i, 'ON')), h.m(d.surtax - a.surtax), h.m(K.saving(i, 10000, 'ON'))]; });
 const m130 = K.marginal(130000, 'ON'), b130 = 0.26 + O.rates[2];

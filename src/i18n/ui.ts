@@ -18,11 +18,11 @@ const en: typeof fr = {
   faqTitle: 'Common questions', relatedCalculators: 'Keep going', sourcesTitle: 'Official sources for this page', writtenBy: 'Prepared by',
   asOf: 'Tax year', lastUpdated: 'Last updated, limits and tax tables read on', footerValidated: 'Sources: canada.ca (TFSA, RRSP and FHSA limits, pages du CELI, guide T4127, 2026 tax rates), provincial budgets',
   footerBrowser: 'Every figure is computed in your browser · no name, no email, nothing for sale',
-  footerDisclaimer: 'Independent site published by Radif Partners. Not affiliated with the Canada Revenue Agency, Revenu Québec, any government, bank or insurer. Estimates for information, not tax or financial advice.',
+  footerDisclaimer: 'Independent site published by Radif Partners. Not affiliated with the Canada Revenue Agency, Revenu Québec, any government, bank or insurer. Estimates only, for information: not financial advice.',
   footerPopular: 'RRSP or TFSA by province',
   notFound: 'Nothing lives at this address. The check on the home page gives your 2026 TFSA, RRSP and FHSA room and the RRSP refund in your province.',
   readMore: 'Read the full answer',
-  estimate: 'Limits reproduce the figures published on canada.ca; taxes are estimated with the 2026 brackets and the basic personal amount. Your exact room is on your notice of assessment and in My Account. General information, not tax or financial advice.',
+  estimate: 'Limits reproduce the figures published on canada.ca; taxes are estimated with the 2026 brackets and the basic personal amount. Your exact room is on your notice of assessment and in My Account. General information, not financial advice: it does not replace your notice of assessment or a tax professional.',
   moreOptions: 'More options', copyLink: 'Copy share link', copied: 'Link copied', print: 'Print', howComputed: 'How this is computed', openFull: 'Open the full calculator',
 };
 export function t(lang: Locale) { return lang === 'en' ? en : fr; }

@@ -514,6 +514,11 @@
       "threshold": {
         "2025": 93454,
         "2026": 95323
+      },
+      "fullRecovery": {
+        "2025": 152062,
+        "2026": 155320,
+        "note": "seuil maximal, 65 à 74 ans (75 ans et plus : 157 923 $ et 161 320 $)"
       }
     },
     "gis": {

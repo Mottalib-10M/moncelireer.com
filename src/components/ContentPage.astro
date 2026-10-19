@@ -22,7 +22,7 @@ const jsonLd = [webApplicationSchema({ name: x.h1, description: x.description, p
 if (x.faqs.length) jsonLd.push(faqSchema(x.faqs, lang));
 const related = page.related.filter((id) => ROUTES.some((r) => r.id === id)).map((id) => ({ href: route(id, lang), name: label(id, lang), description: guideById(id)?.[lang].card ?? '' }));
 const sources = sourceList(page.sources, lang);
-const read = lang === 'fr' ? 'plafonds et barèmes lus sur canada.ca · estimation, pas un avis de cotisation' : 'limits and tax tables read on canada.ca · an estimate, not a notice of assessment';
+const read = lang === 'fr' ? 'plafonds et barèmes lus sur canada.ca · estimation, pas un avis de cotisation' : 'limits and tax tables read on canada.ca · estimates only, not a notice of assessment';
 ---
 <PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={x.faqs} related={related} sources={sources} breadcrumbs={[{ label: group.label[lang] }, { label: x.nav }]}>
   <article>

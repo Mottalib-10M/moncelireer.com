@@ -38,7 +38,7 @@ const rows = K.PROVS.map((p) => {
   <header class="mb-4">
     <h1 class="text-[1.7rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{x.h1}</h1>
     <p class="mt-2 text-base text-navy-700 sm:text-lg">{x.intro}</p>
-    <p class="mt-1 text-sm text-navy-600">{fr ? 'Plafonds et barèmes 2026 vérifiés le' : '2026 limits and tax tables checked on'} <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, LANG_TAGS[lang])}</time> · <a href={route('method', lang)} class="underline">{fr ? 'Méthode de calcul' : 'How we calculate'}</a> · <a href={route('about', lang)} class="underline">{fr ? 'Qui publie ce site' : 'Who publishes this site'}</a></p>
+    <p class="mt-1 text-sm text-navy-600"><a href={route('method', lang)} class="underline">{fr ? 'Méthode de calcul' : 'How we calculate'}</a> · <a href={route('about', lang)} class="underline">{fr ? 'Qui publie ce site' : 'Who publishes this site'}</a></p>
   </header>
   <div data-outil data-chrome><Tool kind="bilan" lang={lang} idPrefix="home" /></div>
   <dl data-chrome class="limits my-6 text-sm">

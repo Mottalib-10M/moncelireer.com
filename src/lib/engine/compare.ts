@@ -63,5 +63,7 @@ export function ccbGain(afni: number, deduction: number, children: number): numb
 /** Récupération de la pension de la SV : 15 % du revenu net au-delà du seuil de l'année de revenu. */
 export function oasRecovery(net: number, incomeYear: 2025 | 2026 = 2026): number {
   const t = (P.benefits.oas.threshold as Record<string, number>)[String(incomeYear)];
-  return Math.max(0, net - t) * P.benefits.oas.recoveryRate;
+  // Plafonnée à la pension entière : au seuil maximal (65 à 74 ans), toute la pension est récupérée.
+  const full = (P.benefits.oas.fullRecovery as unknown as Record<string, number>)[String(incomeYear)];
+  return Math.max(0, Math.min(net, full) - t) * P.benefits.oas.recoveryRate;
 }
