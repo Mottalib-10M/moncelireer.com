@@ -222,8 +222,8 @@
       ],
       "bpa": 18952,
       "src": "rq_rates",
-      "bpa_src": "mb_budget_2026",
-      "verification": "Montant personnel de base (18 952 $) et taux supérieur (25,75 %) lus dans le tableau interprovincial du budget 2026 du Manitoba ; tranches à relire sur revenuquebec.ca, dont le site refuse les robots (403) le 2026-10-19."
+      "bpa_src": "rq_changes_2026",
+      "verification": "Tranches (54 345, 108 680, 132 245 $) et taux (14, 19, 24, 25,75 %) relus sur la page « Taux d'imposition » de Revenu Québec, et montant personnel de base (18 952 $) relu sur « Principaux changements pour l'année 2026 » de Revenu Québec, dans un navigateur le 2026-10-19 (le site refuse les robots)."
     },
     "ON": {
       "brackets": [
@@ -582,6 +582,14 @@
       "label": {
         "fr": "Revenu Québec : taux d'imposition des particuliers",
         "en": "Revenu Québec: personal income tax rates"
+      }
+    },
+    "rq_changes_2026": {
+      "url": "https://www.revenuquebec.ca/fr/entreprises/retenues-a-la-source-et-cotisations-de-lemployeur/employeur-principaux-changements-2026/",
+      "url_en": "https://www.revenuquebec.ca/en/businesses/source-deductions-and-employer-contributions/employers-principal-changes-for-2026/",
+      "label": {
+        "fr": "Revenu Québec : principaux changements pour l'année 2026, montants des crédits d'impôt personnels",
+        "en": "Revenu Québec: main changes for 2026, personal tax credit amounts"
       }
     },
     "mb_budget_2026": {
