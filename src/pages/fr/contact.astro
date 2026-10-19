@@ -6,9 +6,9 @@ import { route } from '../../i18n/routes';
 import { contactPageSchema } from '../../lib/seo';
 const lang = 'fr';
 const path = route('contact', lang);
-const description = 'Écrire à l’éditeur de CELI ou REER au sujet d’un plafond 2026, d’une règle fiscale ou d’une source. Courriel seulement, sans conseil personnel ni produit.';
+const description = 'Écrire à l’éditeur de Mon CELI REER au sujet d’un plafond 2026, d’une règle fiscale ou d’une source. Courriel seulement, sans conseil personnel ni produit.';
 ---
-<PageLayout title="Contact CELI ou REER 2026 : corrections et sources" description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Contact', description, path, lang })]} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+<PageLayout title="Contact Mon CELI REER 2026 : corrections et sources" description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Contact', description, path, lang })]} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
   <div class="prose prose-slate max-w-none">
     <h1>Contact</h1>
     <p>Écrivez à <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. Il n'y a ni formulaire, ni téléphone, ni compte à créer : une seule adresse, lue par les personnes qui tiennent les simulateurs à jour.</p>

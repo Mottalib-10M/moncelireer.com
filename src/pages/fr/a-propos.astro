@@ -10,13 +10,13 @@ import { profilePageSchema, breadcrumbSchema } from '../../lib/seo';
 const lang = 'fr';
 const path = route('about', lang);
 const F = K.fr, Y = K.YEAR;
-const title = `CELI ou REER ${Y} : qui publie ce site et pourquoi`;
-const description = `CELI ou REER est publié par Radif Partners : droits CELI, plafond REER et CELIAPP ${Y} recalculés sur les sources de canada.ca, sans courriel ni vente.`;
+const title = `Mon CELI REER ${Y} : qui publie ce site et pourquoi`;
+const description = `Mon CELI REER est publié par Radif Partners : droits CELI, plafond REER et CELIAPP ${Y} recalculés sur les sources de canada.ca, sans courriel ni vente.`;
 const s = (k: string, t: string) => srcLink(k, lang, t);
 ---
 <PageLayout title={title} description={description} lang={lang} jsonLd={[profilePageSchema({ path, lang }), breadcrumbSchema([{ name: 'Accueil', path: route('home', lang) }, { name: 'À propos', path }])]} breadcrumbs={[{ label: 'À propos' }]}>
   <article class="prose prose-slate max-w-none">
-    <h1>À propos de CELI ou REER</h1>
+    <h1>À propos de Mon CELI REER</h1>
     <p>{AUTHOR_DESC.fr}</p>
     <h2>Pourquoi ce site existe</h2>
     <p>Une personne qui se demande combien elle peut verser à son CELI ou si un REER vaut la peine trouve surtout deux sortes de pages. Les pages officielles de l'Agence du revenu du Canada expliquent les règles avec exactitude, mais ne font pas le calcul : il faut additionner soi-même dix-huit plafonds annuels et trouver ses tranches d'imposition dans un autre document. Les pages des banques, des assureurs et des comparateurs font parfois le calcul, mais certaines affichent encore le plafond d'une année passée, donnent des totaux qui se contredisent d'un paragraphe à l'autre ou renvoient vers un produit à acheter.</p>

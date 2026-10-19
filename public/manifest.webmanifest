@@ -1,6 +1,6 @@
 {
- "name": "CELI ou REER",
- "short_name": "CELI ou REER",
+ "name": "Mon CELI REER",
+ "short_name": "CELI REER",
  "description": "Simulateurs CELI, REER et CELIAPP 2026 : droits cumulés selon l'âge et l'arrivée au Canada, remboursement d'impôt dans chaque province, choix entre les comptes.",
  "start_url": "/fr/",
  "display": "standalone",

@@ -1,6 +1,6 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://ca-celi-reer.example";
-export const SITE_NAMES: Record<string, string> = {"fr": "CELI ou REER", "en": "TFSA or RRSP"};
+export const SITE_URL = "https://moncelireer.com";
+export const SITE_NAMES: Record<string, string> = {"fr": "Mon CELI REER", "en": "TFSA or RRSP"};
 export const LANG_TAGS: Record<string, string> = {"fr": "fr-CA", "en": "en-CA"};
 export const OG_LOCALES: Record<string, string> = {"fr": "fr_CA", "en": "en_CA"};
 export const LOCALE_TAG = 'fr-CA';
@@ -16,7 +16,7 @@ export const AUTHOR_DESC: Record<string, string> = {"fr": "Radif Partners recalc
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"fr": ["Compte d'épargne libre d'impôt (CELI)", "Régime enregistré d'épargne-retraite (REER)", "Compte d'épargne libre d'impôt pour l'achat d'une première propriété (CELIAPP)", "Régime d'accession à la propriété (RAP)", "Régime d'encouragement à l'éducation permanente (REEP)", "Taux marginaux d'imposition fédéral et provinciaux"], "en": ["Tax-Free Savings Account (TFSA)", "Registered Retirement Savings Plan (RRSP)", "First Home Savings Account (FHSA)", "Home Buyers' Plan (HBP)", "Lifelong Learning Plan (LLP)", "Federal and provincial marginal tax rates"]};
-export const CONTACT_EMAIL = "contact@ca-celi-reer.example";
+export const CONTACT_EMAIL = "contact@moncelireer.com";
 export const THEME_COLOR = '#9B1B30';
 export const LOGO_SYMBOL = '%';
 export const BING_VERIFY_CODE = '';

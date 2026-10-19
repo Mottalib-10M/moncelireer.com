@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /*?*
 
-Sitemap: https://ca-celi-reer.example/sitemap-index.xml
+Sitemap: https://moncelireer.com/sitemap-index.xml
