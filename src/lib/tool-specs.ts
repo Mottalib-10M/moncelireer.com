@@ -65,7 +65,7 @@ export const SPECS: Record<string, (l: Lang, arg?: Args) => ToolSpec> = {
         label: T(l, `Vos droits CELI disponibles en ${YEAR}`, `Your TFSA room available in ${YEAR}`), value: money(t.available, l),
         sub: t.startYear === null ? T(l, 'Pas encore de droits : ils s’ouvrent l’année de vos 18 ans.', 'No room yet: it opens the year you turn 18.')
           : t.excess > 0 ? T(l, `Excédent de ${money(t.excess, l)} : impôt de 1 % par mois, soit ${money(t.monthlyTax, l)}.`, `Excess of ${money(t.excess, l)}: 1% tax a month, ${money(t.monthlyTax, l)}.`)
-            : T(l, `Droits accumulés depuis ${t.startYear}, sur ${t.years} années.`, `Room built up since ${t.startYear}, over ${t.years} years.`),
+            : T(l, `Droits accumulés depuis ${t.startYear}, sur ${t.years} ${t.years > 1 ? 'années' : 'année'}.`, `Room built up since ${t.startYear}, over ${t.years} ${t.years > 1 ? 'years' : 'year'}.`),
         rows: [
           [T(l, `REER : nouveaux droits ${YEAR} (18 % du revenu 2025)`, `RRSP: new ${YEAR} room (18% of 2025 income)`), money(r.newRoom, l), r.newRoom],
           [T(l, 'CELIAPP : droits de la première année', 'FHSA: first-year room'), fhsaOk ? money(P.fhsa.annual, l) : T(l, 'non admissible ici', 'not eligible here'), fhsaOk ? P.fhsa.annual : 0],
@@ -293,7 +293,7 @@ export const SPECS: Record<string, (l: Lang, arg?: Args) => ToolSpec> = {
       const real = withdrawalTax(n(v, 'au'), mt, pr);
       return {
         label: T(l, 'Impôt réel sur le retrait', 'Actual tax on the withdrawal'), value: money(real, l),
-        sub: pr === 'QC' ? T(l, `Retenue fédérale à la source : ${pct(w.rate, l, 0)}, plus la retenue du Québec. Le solde se règle dans la déclaration.`, `Federal withholding: ${pct(w.rate, l, 0)}, plus Quebec withholding. The balance is settled on your return.`) : T(l, `Retenue à la source : ${pct(w.rate, l, 0)}. Le solde se règle dans la déclaration.`, `Withholding: ${pct(w.rate, l, 0)}. The balance is settled on your return.`),
+        sub: pr === 'QC' ? T(l, `Retenue fédérale à la source : ${pct(w.rate, l, 0)}, plus la retenue du Québec. Le solde se règle dans la déclaration.`, `Federal withholding: ${pct(w.rate, l, 0)}, plus Quebec withholding. The balance is settled on your return.`) : T(l, `Retenue à la source : ${pct(w.rate, l, 0)}. Le solde se règle dans la déclaration.${pr === 'ON' ? ' Impôt fédéral et provincial seulement : la contribution santé de l’Ontario, qui peut augmenter avec le retrait, n’est pas comptée.' : ''}`, `Withholding: ${pct(w.rate, l, 0)}. The balance is settled on your return.${pr === 'ON' ? ' Federal and provincial tax only: the Ontario Health Premium, which can rise with the withdrawal, is not included.' : ''}`),
         rows: [[T(l, pr === 'QC' ? 'Retenue fédérale' : 'Retenue à la source', pr === 'QC' ? 'Federal withholding' : 'Withholding'), money(w.withheld, l), w.withheld], [T(l, 'Impôt dû au total', 'Total tax due'), money(real, l), real], ...(pr === 'QC' ? [] : [[T(l, 'À payer en plus au printemps', 'Extra to pay in the spring'), money(Math.max(0, real - w.withheld), l)] as [string, string]]), [T(l, 'Taux moyen sur le retrait', 'Average rate on the withdrawal'), pct(mt > 0 ? real / mt : 0, l)]],
         note: T(l, 'Un retrait REER ne recrée pas de droits de cotisation, au contraire d’un retrait CELI.', 'An RRSP withdrawal does not give back contribution room, unlike a TFSA withdrawal.'),
       };
