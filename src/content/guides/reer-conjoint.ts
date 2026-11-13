@@ -37,7 +37,7 @@ export default defineGuide({
       { q: 'Les retraits minimums d’un FERR de conjoint sont-ils visés par la règle des trois ans ?', a: `Non. Pour un FERR qui a reçu des sommes d'un REER de conjoint, seule la partie retirée au-delà du minimum de l'année peut revenir dans le revenu du cotisant. Le minimum est imposé au titulaire même si le cotisant a versé récemment à un REER de conjoint. C'est une façon de commencer à toucher l'épargne du couple sans attendre trois ans.` },
     ],
     body: (h) => `
-<h2>Qui cotise, qui déduit, à qui appartient le compte</h2>
+<h2>Qui cotise, qui déduit, à qui appartient le REER de conjoint</h2>
 <p>Un REER de conjoint est un REER ouvert au nom de votre époux ou conjoint de fait, auquel vous versez de l'argent. Le compte et les placements sont les siens : lui seul peut faire des retraits. La déduction, elle, est la vôtre. Elle passe par votre maximum déductible, qui couvre ensemble vos cotisations à votre propre REER et au REER de votre conjoint, selon la ${h.src('cra_rrsp_limit', 'page de l’Agence sur le maximum déductible')}. Votre conjoint garde ses propres droits intacts pour son REER à lui. Si le total de vos versements dépasse votre maximum, l'excédent est traité comme pour un REER ordinaire : voir ${h.a('excedent-reer', 'cotisation excédentaire au REER')}.</p>
 <p>Vous pouvez y cotiser jusqu'au 31 décembre de l'année des 71 ans de votre conjoint, même si vous êtes plus âgé. Au décès du cotisant, son représentant légal peut encore verser au REER du conjoint survivant dans l'année du décès ou les 60 jours suivants, et la cotisation se déduit dans la dernière déclaration du défunt.</p>
 <h2>La règle des trois années</h2>
@@ -70,7 +70,7 @@ ${h.table(['Revenus des deux conjoints', `Impôt total, ${K.prov('ON', 'fr')}`, 
       { q: 'Does the three-year rule apply to spousal RRIF minimum payments?', a: `No. For a RRIF that received funds from a spousal RRSP, only the part withdrawn above the minimum for the year can be added back to the contributor's income. The minimum is taxed to the holder even if the contributor paid into a spousal RRSP recently. It is one way to start drawing on the couple's savings without waiting three years.` },
     ],
     body: (h) => `
-<h2>Who contributes, who deducts, who owns the account</h2>
+<h2>Who contributes, who deducts, who owns the spousal RRSP</h2>
 <p>A spousal RRSP is an RRSP in your spouse's or common-law partner's name that you pay into. The account and the investments are theirs, and only they can withdraw. The deduction is yours. It runs through your deduction limit, which covers contributions to your own RRSP and to your spouse's RRSP together, as the ${h.src('cra_rrsp_limit', 'CRA page on the deduction limit')} explains. Your spouse keeps their own room untouched for their own RRSP. If your total contributions go over your limit, the excess is treated as for any RRSP; see ${h.a('excedent-reer', 'RRSP over-contribution')}.</p>
 <p>You can contribute until December 31 of the year your spouse turns 71, even if you are older. When the contributor dies, their legal representative can still pay into the surviving spouse's RRSP during the year of death or the first 60 days after it, and the contribution is claimed on the deceased person's final return.</p>
 <h2>The three-year rule</h2>

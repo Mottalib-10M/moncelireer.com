@@ -33,7 +33,7 @@ export default defineGuide({
       { q: 'La déduction CELIAPP augmente-t-elle aussi l’allocation pour enfants ?', a: `Oui, de la même façon qu'une déduction REER : elle est retranchée du revenu et baisse le revenu familial net rajusté. Une cotisation au CELI, elle, n'est pas déductible et ne change rien à l'allocation. Les retraits du CELI ne la réduisent pas non plus, alors qu'un retrait REER imposable fait monter le revenu familial et peut faire baisser l'allocation de l'année suivante.` },
     ],
     body: (h) => `
-<h2>Le revenu qui fixe l'allocation</h2>
+<h2>Le revenu qui fixe l'allocation canadienne pour enfants</h2>
 <p>L'allocation canadienne pour enfants n'est pas imposable, mais elle baisse quand le revenu de la famille monte. Selon le ${h.src('cra_ccb', 'calcul de l’Agence du revenu du Canada')}, le chiffre qui compte est le revenu familial net rajusté : le revenu net de la ligne 23600 de votre déclaration, plus celui de votre époux ou conjoint de fait, avec quelques ajustements rares. Une déduction REER ou CELIAPP réduit ce revenu net. Elle fait donc baisser la réduction de l'allocation, au même titre qu'une baisse de salaire, sans que vous gagniez moins.</p>
 <p>Pour la période ${C.period.fr}, calculée sur le revenu de ${C.incomeYear}, le maximum est de ${h.m(C.maxUnder6)} par enfant de moins de 6 ans et de ${h.m(C.max6to17)} par enfant de 6 à 17 ans. Il n'est pas réduit sous ${h.m(s1)} de revenu familial net rajusté. Entre ${h.m(s1)} et ${h.m(s2)}, il baisse d'un premier pourcentage de l'excédent ; au-delà de ${h.m(s2)}, d'un montant fixe plus un second pourcentage, plus faible.</p>
 <h2>Les taux de réduction selon le nombre d'enfants</h2>
@@ -65,7 +65,7 @@ ${h.mini('remboursement', { t: 'La baisse d’impôt seule, sans l’allocation'
       { q: 'Does an FHSA deduction also raise the child benefit?', a: `Yes, in the same way as an RRSP deduction: it is subtracted from income and lowers adjusted family net income. A TFSA contribution is not deductible and does nothing for the benefit. TFSA withdrawals do not reduce it either, whereas a taxable RRSP withdrawal raises family income and can lower the next year's benefit.` },
     ],
     body: (h) => `
-<h2>The income that sets the benefit</h2>
+<h2>The income that sets the Canada child benefit</h2>
 <p>The Canada child benefit is not taxable, but it shrinks as family income rises. Under the ${h.src('cra_ccb', 'Canada Revenue Agency calculation')}, the figure that counts is adjusted family net income: the net income on line 23600 of your return, plus your spouse's or common-law partner's, with a few uncommon adjustments. An RRSP or FHSA deduction lowers that net income. It therefore lowers the benefit reduction, just as a drop in pay would, without you earning any less.</p>
 <p>For ${C.period.en}, based on ${C.incomeYear} income, the maximum is ${h.m(C.maxUnder6)} per child under 6 and ${h.m(C.max6to17)} per child aged 6 to 17. It is not reduced below ${h.m(s1)} of adjusted family net income. Between ${h.m(s1)} and ${h.m(s2)}, it drops by a first percentage of the excess; above ${h.m(s2)}, by a fixed amount plus a second, smaller percentage.</p>
 <h2>Reduction rates by number of children</h2>

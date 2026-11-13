@@ -41,7 +41,7 @@ export default defineGuide({
 <p>Selon la ${h.src('cra_rates_2026', 'page des taux 2026 de canada.ca')}, la Nouvelle-Écosse applique ${h.r(N.rates[0])} jusqu'à ${h.m(N.brackets[0])}, ${h.r(N.rates[1])} jusqu'à ${h.m(N.brackets[1])}, ${h.r(N.rates[2])} jusqu'à ${h.m(N.brackets[2])}, ${h.r(N.rates[3])} jusqu'à ${h.m(N.brackets[3])}, puis ${h.r(top)}. Les tranches provinciales et fédérales tombent à des endroits différents, ce qui multiplie les marches du taux combiné :</p>
 ${h.table(['Revenu imposable à partir de', 'Taux marginal combiné'], steps.map((s) => [h.m(s.from), h.p(s.rate)]), `Taux combinés fédéral et Nouvelle-Écosse, ${Y}.`, ['l', 'r'])}
 <p>Entre ${h.m(K.P.federal.brackets[0])} et ${h.m(N.brackets[2])}, le taux change trois fois en moins de ${h.m(40000)} de revenu. Pour votre cotisation REER, cela veut dire qu'une même somme ne rapporte pas la même chose selon l'endroit où se trouve votre revenu dans cet escalier.</p>
-<h2>Ce que rapporte 5 000 $ au REER</h2>
+<h2>Ce que rapporte 5 000 $ au REER en Nouvelle-Écosse</h2>
 <p>Le tableau suivant calcule l'impôt évité par une cotisation de ${h.m(5000)} pour six revenus. La dernière colonne donne, pour comparer, le taux marginal au même revenu au Nouveau-Brunswick voisin.</p>
 ${h.table(['Revenu imposable', 'Taux marginal', 'Impôt évité sur 5 000 $', 'Taux au Nouveau-Brunswick'], irows(h), `Nouvelle-Écosse, ${Y}, impôts fédéral et provincial.`, ['l', 'r', 'r', 'r'])}
 <p>Selon le revenu, l'écart avec le Nouveau-Brunswick va de ${h.p(gmin)} à ${h.p(gmax)} au détriment de la Nouvelle-Écosse, car les deux barèmes n'ont pas leurs seuils aux mêmes endroits. Une même cotisation vaut donc un peu plus en Nouvelle-Écosse, ce qui joue en faveur du REER tant que les retraits se feront à un taux plus bas.</p>
@@ -75,7 +75,7 @@ ${h.mini('reerCeli', { t: 'Testez votre revenu de retraite', p: ['rr', 'ep'], d:
 <p>According to the ${h.src('cra_rates_2026', '2026 rates page on canada.ca')}, Nova Scotia applies ${h.r(N.rates[0])} up to ${h.m(N.brackets[0])}, ${h.r(N.rates[1])} up to ${h.m(N.brackets[1])}, ${h.r(N.rates[2])} up to ${h.m(N.brackets[2])}, ${h.r(N.rates[3])} up to ${h.m(N.brackets[3])}, then ${h.r(top)}. The provincial and federal brackets fall in different places, which multiplies the steps of the combined rate:</p>
 ${h.table(['Taxable income from', 'Combined marginal rate'], steps.map((s) => [h.m(s.from), h.p(s.rate)]), `Combined federal and Nova Scotia rates, ${Y}.`, ['l', 'r'])}
 <p>Between ${h.m(K.P.federal.brackets[0])} and ${h.m(N.brackets[2])}, the rate changes three times in less than ${h.m(40000)} of income. For your RRSP contribution, this means the same amount does not save the same tax depending on where your income sits on this staircase.</p>
-<h2>What $5,000 in an RRSP saves</h2>
+<h2>What $5,000 in an RRSP saves in Nova Scotia</h2>
 <p>The table below works out the tax avoided by a ${h.m(5000)} contribution at six incomes. The last column gives, for comparison, the marginal rate at the same income in neighbouring New Brunswick.</p>
 ${h.table(['Taxable income', 'Marginal rate', 'Tax avoided on $5,000', 'New Brunswick rate'], irows(h), `Nova Scotia, ${Y}, federal and provincial tax.`, ['l', 'r', 'r', 'r'])}
 <p>Depending on income, the gap with New Brunswick ranges from ${h.p(gmin)} to ${h.p(gmax)}, always higher in Nova Scotia, because the two tables do not put their thresholds in the same places. The same contribution is therefore worth a little more in Nova Scotia, which favours the RRSP as long as withdrawals will be taxed at a lower rate.</p>

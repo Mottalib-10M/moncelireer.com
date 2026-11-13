@@ -35,7 +35,7 @@ export default defineGuide({
 <h2>Le barème du Québec en ${Y}</h2>
 <p>Le Québec impose le revenu à quatre taux : ${Q.rates.map((r) => h.r(r)).join(', ')}. Le montant personnel de base s'élève à ${h.m(Q.bpa ?? 0)}, le plus élevé des provinces de l'Est. Les taux et les seuils des tranches viennent de la page des ${h.src('rq_rates', 'taux d\'imposition de Revenu Québec')}, et le montant personnel de base des ${h.src('rq_changes_2026', 'principaux changements 2026 publiés par Revenu Québec')}.</p>
 ${h.table(['Revenu imposable', 'Part fédérale', 'Part du Québec', 'Taux combiné', 'Économie sur 5 000 $'], rows(h), `Taux marginal par gouvernement et économie d'une cotisation REER de ${h.m(5000)}, Québec, ${Y}.`, ['l', 'r', 'r', 'r', 'r'])}
-<h2>Ce que l'abattement change pour le REER</h2>
+<h2>Ce que l'abattement du Québec change pour le REER</h2>
 <p>L'abattement réduit l'impôt fédéral de 16,5 %. Il réduit donc aussi, dans la même proportion, la part fédérale de votre remboursement : au taux fédéral de 20,5 %, un dollar déduit ne rapporte qu'environ ${h.p(0.205 * (1 - K.P.federal.qcAbatement))} au fédéral. La part québécoise compense largement, puisque le taux du Québec dépasse presque toujours le taux provincial ailleurs. Résultat : à revenu égal, le remboursement REER d'un Québécois est en général plus élevé que celui d'un Ontarien ou d'un Albertain. Le tableau de l'accueil compare les 13 provinces et territoires.</p>
 ${h.mini('remboursement', { t: 'Votre remboursement REER au Québec', p: ['rv', 'mt'], d: { pr: 'QC', rv: 80000, mt: 5000 } })}
 <h2>Un exemple complet</h2>
@@ -67,7 +67,7 @@ ${h.mini('remboursement', { t: 'Votre remboursement REER au Québec', p: ['rv', 
 <h2>Quebec's ${Y} tax table</h2>
 <p>Quebec taxes income at four rates: ${Q.rates.map((r) => h.r(r)).join(', ')}. The basic personal amount is ${h.m(Q.bpa ?? 0)}, the highest among the eastern provinces. The rates and bracket thresholds come from the ${h.src('rq_rates', 'Revenu Québec income tax rates page')}, and the basic personal amount from the ${h.src('rq_changes_2026', 'main changes for 2026 published by Revenu Québec')}.</p>
 ${h.table(['Taxable income', 'Federal share', 'Quebec share', 'Combined rate', 'Saved on $5,000'], rows(h), `Marginal rate by government and tax saved by a ${h.m(5000)} RRSP contribution, Quebec, ${Y}.`, ['l', 'r', 'r', 'r', 'r'])}
-<h2>What the abatement means for an RRSP</h2>
+<h2>What the Quebec abatement means for an RRSP</h2>
 <p>The abatement cuts federal tax by 16.5%, so it also cuts the federal part of your refund in the same proportion: at the 20.5% federal rate, each dollar deducted saves only about ${h.p(0.205 * (1 - K.P.federal.qcAbatement))} federally. The Quebec part more than makes up for it, since Quebec's rate is almost always above the provincial rate elsewhere. The result: at the same income, a Quebecer's RRSP refund is usually larger than an Ontarian's or an Albertan's. The table on the home page compares all 13 provinces and territories.</p>
 ${h.mini('remboursement', { t: 'Your RRSP refund in Quebec', p: ['rv', 'mt'], d: { pr: 'QC', rv: 80000, mt: 5000 } })}
 <h2>A worked example</h2>

@@ -50,7 +50,7 @@ ${h.table(['Revenu imposable à partir de', 'Taux marginal combiné'], steps.map
 <h2>Viser le seuil de ${h.m(FB[1])}</h2>
 <p>Parce que les marches sont hautes, le montant à verser se calcule facilement. Une personne au revenu imposable de ${h.m(startInc)} a ${h.m(toLine)} au-dessus du deuxième seuil fédéral. Une cotisation de ce montant fait baisser l'impôt de ${h.m(K.saving(startInc, toLine, 'YT'))}, soit ${h.p(K.marginal(startInc, 'YT'))} par dollar. Les dollars suivants ne rapportent que ${h.p(K.marginal(100000, 'YT'))}, jusqu'à ${h.m(FB[0])}. Pour l'épargne qui dépasse ce premier montant, le choix entre REER et CELI se joue alors sur le taux attendu à la retraite.</p>
 ${h.mini('reerCeli', { t: 'REER ou CELI au Yukon', p: ['rv', 'rr', 'dc'], d: { pr: 'YT', rv: 90000, rr: 35000 } })}
-<h2>Deux retraites, deux réponses</h2>
+<h2>REER ou CELI : deux retraites, deux réponses</h2>
 <p>Gardons un revenu de ${h.m(90000)} et ${h.m(6000)} d'épargne par an pendant 25 ans. Si le revenu de retraite prévu, sans le REER, est de ${h.m(35000)}, les retraits seront imposés à ${h.p(low.rateLater)}, contre ${h.p(low.rateNow)} récupérés aujourd'hui : l'écart final est de ${h.m(Math.abs(low.gap))}, ${lead(low.gap, true)}. Si une rente porte ce revenu à ${h.m(75000)}, les retraits tombent dans la même tranche que le salaire actuel, au taux de ${h.p(high.rateLater)}, et le résultat devient ${lead(high.gap, true)}${Math.abs(high.gap) >= 1 ? ` de ${h.m(Math.abs(high.gap))}` : ''}. À égalité de chiffres, le CELI garde un avantage que le calcul ne mesure pas : on peut en retirer à tout moment sans impôt, et le montant retiré revient dans les droits de cotisation l'année suivante.</p>
 `,
   },
@@ -82,7 +82,7 @@ ${h.table(['Taxable income from', 'Combined marginal rate'], steps.map((s) => [h
 <h2>Aiming for the ${h.m(FB[1])} line</h2>
 <p>Because the steps are tall, the amount to contribute is easy to work out. Someone with ${h.m(startInc)} of taxable income has ${h.m(toLine)} above the second federal threshold. A contribution of that size lowers tax by ${h.m(K.saving(startInc, toLine, 'YT'))}, or ${h.p(K.marginal(startInc, 'YT'))} per dollar. The next dollars save only ${h.p(K.marginal(100000, 'YT'))}, down to ${h.m(FB[0])}. For savings beyond that first amount, the RRSP or TFSA choice then turns on the rate you expect in retirement.</p>
 ${h.mini('reerCeli', { t: 'RRSP or TFSA in Yukon', p: ['rv', 'rr', 'dc'], d: { pr: 'YT', rv: 90000, rr: 35000 } })}
-<h2>Two retirements, two answers</h2>
+<h2>RRSP or TFSA: two retirements, two answers</h2>
 <p>Keep an income of ${h.m(90000)} and ${h.m(6000)} saved a year for 25 years. If expected retirement income, before the RRSP, is ${h.m(35000)}, withdrawals will be taxed at ${h.p(low.rateLater)}, against ${h.p(low.rateNow)} recovered today: the final gap is ${h.m(Math.abs(low.gap))}, ${lead(low.gap, false)}. If a pension brings that income to ${h.m(75000)}, withdrawals land in the same bracket as today's salary, at ${h.p(high.rateLater)}, and the result becomes ${lead(high.gap, false)}${Math.abs(high.gap) >= 1 ? ` of ${h.m(Math.abs(high.gap))}` : ''}. When the figures tie, the TFSA keeps an edge the calculation does not measure: you can take money out at any time without tax, and the amount withdrawn comes back as contribution room the following year. A retiree whose income will sit near ${h.m(FB[0])} gains the most from keeping some savings in each account, drawing on the TFSA in the years when an RRSP withdrawal would cross that line.</p>
 `,
   },
