@@ -4,7 +4,7 @@ import P from '../src/data/params-2026.json';
 import { tax, marginalRate, marginalSplit, deductionSaving, taxDetail, PROVS, federalBpa } from '../src/lib/engine/tax';
 import { tfsaCumulative, tfsaRoom, tfsaStartYear, rrspRoom, rrspExcess, rrspWithholding, fhsaRoom, hbpPlan, llpPlan, spousalFreeYear, excessTax } from '../src/lib/engine/accounts';
 import { rrspVsTfsa, grossUp, ccbGain, oasRecovery } from '../src/lib/engine/compare';
-import { TOOL_KINDS, runTool } from '../src/lib/tool-specs';
+import { TOOL_KINDS, runTool, getTool } from '../src/lib/tool-specs';
 
 const near = (a: number, b: number, d = 0.0005) => expect(Math.abs(a - b), `${a} vs ${b}`).toBeLessThan(d);
 
@@ -28,7 +28,12 @@ describe('CELI', () => {
 });
 
 describe('REER', () => {
-  it('plafonds', () => { expect(P.rrsp.dollarLimit['2026']).toBe(33810); expect(P.rrsp.dollarLimit['2027']).toBe(35390); });
+  it('plafonds', () => { expect(P.rrsp.dollarLimit['2026']).toBe(33810); expect(P.rrsp.dollarLimit['2027']).toBe(35390); expect(P.rrsp.dollarLimit['2028']).toBe(36390); });
+  it('année 2027 : plafond de 35 390 $, simulateur réglé sur 2027', () => {
+    expect(rrspRoom({ earnedPrevYear: 250000, year: 2027 }).newRoom).toBe(35390);
+    const r = getTool('plafondReer', 'fr', { an: 2027 }).run({ rg: 250000, fe: 0, di: 0 });
+    expect(r.label).toContain('2027'); expect(r.note).toContain('2028');
+  });
   it('18 % du revenu, plafonné, moins le FE', () => {
     expect(rrspRoom({ earnedPrevYear: 100000 }).newRoom).toBe(18000);
     expect(rrspRoom({ earnedPrevYear: 250000 }).newRoom).toBe(33810);

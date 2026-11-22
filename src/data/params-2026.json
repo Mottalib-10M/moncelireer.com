@@ -46,7 +46,8 @@
       "2024": 31560,
       "2025": 32490,
       "2026": 33810,
-      "2027": 35390
+      "2027": 35390,
+      "2028": 36390
     },
     "earnedIncomeRate": 0.18,
     "overCushion": 2000,
@@ -54,7 +55,8 @@
     "lastContributionAge": 71,
     "deadline": {
       "2025": "2026-03-02",
-      "2026": "2027-03-01"
+      "2026": "2027-03-01",
+      "2027": "2028-02-29"
     },
     "deadlineNote": {
       "fr": "Pour l'année 2026, la Loi de l'impôt sur le revenu admet les cotisations versées dans les 60 jours qui suivent la fin de l'année : le 60e jour de 2027 tombe le lundi 1er mars 2027.",
@@ -527,13 +529,30 @@
       "coupleOasMax": 30528
     }
   },
+  "federal2027": {
+    "src": "t4127_jan27",
+    "_note": "Guide T4127, 124e édition, en vigueur le 1er janvier 2027 (page du 2026-11-19), tableaux 8.1 et 8.2. Lu le 2026-11-22.",
+    "index": 0.026,
+    "brackets": [60044, 120088, 186157, 265203],
+    "rates": [0.14, 0.205, 0.26, 0.29, 0.33],
+    "bpaMax": 16879,
+    "bpaMin": 15214
+  },
   "sources": {
+    "t4127_jan27": {
+      "url": "https://www.canada.ca/fr/agence-revenu/services/formulaires-publications/retenues-paie/t4127-formules-calcul-retenues-paie/t4127-jan/t4127-jan-formules-calcul-informatise-retenues-paie.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
+      "label": {
+        "fr": "Guide T4127, Formules pour le calcul des retenues sur la paie, 124e édition, 1er janvier 2027 (page du 2026-11-19)",
+        "en": "Guide T4127, Payroll Deductions Formulas, 124th edition, January 1, 2027 (page of 2026-11-19)"
+      }
+    },
     "cra_limits": {
       "url": "https://www.canada.ca/fr/agence-revenu/services/impot/administrateurs-regimes-enregistres/fesp/plafonds-cd-reer-rpdb-celi-mgap.html",
       "url_en": "https://www.canada.ca/en/revenue-agency/services/tax/registered-plans-administrators/pspa/mp-rrsp-dpsp-tfsa-limits-ympe.html",
       "label": {
-        "fr": "Agence du revenu du Canada : plafonds CD, PD, REER, RPDB, CELI, MGAP (page du 2025-12-01)",
-        "en": "Canada Revenue Agency: MP, DB, RRSP, DPSP, ALDA, TFSA limits and YMPE (page of 2025-12-01)"
+        "fr": "Agence du revenu du Canada : plafonds CD, PD, REER, RPDB, CELI, MGAP (page du 2026-10-28)",
+        "en": "Canada Revenue Agency: MP, DB, RRSP, DPSP, ALDA, TFSA limits and YMPE (page of 2026-10-28)"
       }
     },
     "rc4466": {
@@ -553,19 +572,19 @@
       }
     },
     "t4127_jul": {
-      "url": "https://www.canada.ca/fr/agence-revenu/services/formulaires-publications/retenues-paie/t4127-formules-calcul-retenues-paie/t4127-jul/t4127-jul-formules-calcul-retenues-paie.html",
-      "url_en": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html",
+      "url": "https://www.canada.ca/fr/agence-revenu/services/formulaires-publications/retenues-paie/t4127-formules-calcul-retenues-paie/t4127-jan/t4127-jan-formules-calcul-informatise-retenues-paie.html",
+      "url_en": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
       "label": {
-        "fr": "Guide T4127, Formules pour le calcul des retenues sur la paie, 123e édition, 1er juillet 2026",
-        "en": "Guide T4127, Payroll Deductions Formulas, 123rd edition, July 1, 2026"
+        "fr": "Guide T4127, Formules pour le calcul des retenues sur la paie (abattement du Québec de 16,5 %, repris dans la 124e édition du 1er janvier 2027)",
+        "en": "Guide T4127, Payroll Deductions Formulas (16.5% Quebec abatement, carried into the 124th edition of January 1, 2027)"
       }
     },
     "t4127_jan": {
       "url": "https://www.canada.ca/fr/agence-revenu/services/formulaires-publications/retenues-paie/t4127-formules-calcul-retenues-paie/t4127-jan/t4127-jan-formules-calcul-informatise-retenues-paie.html",
       "url_en": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
       "label": {
-        "fr": "Guide T4127, 122e édition, 1er janvier 2026 (Manitoba, Île-du-Prince-Édouard, Saskatchewan)",
-        "en": "Guide T4127, 122nd edition, January 1, 2026 (Manitoba, Prince Edward Island, Saskatchewan)"
+        "fr": "Guide T4127, 122e édition, 1er janvier 2026 (Manitoba, Île-du-Prince-Édouard, Saskatchewan), lue le 2026-10-19 ; la même adresse présente depuis le 2026-11-19 la 124e édition, pour 2027",
+        "en": "Guide T4127, 122nd edition, January 1, 2026 (Manitoba, Prince Edward Island, Saskatchewan), read 2026-10-19; since 2026-11-19 the same address shows the 124th edition, for 2027"
       }
     },
     "cra_indexation": {

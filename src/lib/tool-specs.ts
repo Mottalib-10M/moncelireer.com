@@ -200,20 +200,20 @@ export const SPECS: Record<string, (l: Lang, arg?: Args) => ToolSpec> = {
   }),
 
   /* Plafond et maximum déductible REER */
-  plafondReer: (l, a) => ({
-    inputs: [{ id: 'rg', label: T(l, 'Revenu gagné en 2025', 'Earned income in 2025'), def: Number(a?.rg ?? 80000), unit: '$', max: 5000000, help: T(l, 'Salaire, revenu d’entreprise, loyers nets', 'Salary, business income, net rent') },
-      { id: 'fe', label: T(l, 'Facteur d’équivalence 2025', '2025 pension adjustment'), def: 0, unit: '$', max: 100000, help: T(l, 'Case 52 du T4 (régime de retraite)', 'Box 52 of your T4 (pension plan)') },
+  plafondReer: (l, a) => { const Y = Number(a?.an ?? YEAR); return {
+    inputs: [{ id: 'rg', label: T(l, `Revenu gagné en ${Y - 1}`, `Earned income in ${Y - 1}`), def: Number(a?.rg ?? 80000), unit: '$', max: 5000000, help: T(l, 'Salaire, revenu d’entreprise, loyers nets', 'Salary, business income, net rent') },
+      { id: 'fe', label: T(l, `Facteur d’équivalence ${Y - 1}`, `${Y - 1} pension adjustment`), def: 0, unit: '$', max: 100000, help: T(l, 'Case 52 du T4 (régime de retraite)', 'Box 52 of your T4 (pension plan)') },
       { id: 'di', label: T(l, 'Droits inutilisés reportés', 'Unused room carried forward'), def: 0, unit: '$', max: 2000000, adv: true }],
     run: (v) => {
-      const r = rrspRoom({ earnedPrevYear: n(v, 'rg'), pensionAdjustment: n(v, 'fe'), unusedRoom: n(v, 'di') });
+      const r = rrspRoom({ earnedPrevYear: n(v, 'rg'), pensionAdjustment: n(v, 'fe'), unusedRoom: n(v, 'di'), year: Y });
       return {
-        label: T(l, `Maximum déductible REER ${YEAR}`, `${YEAR} RRSP deduction limit`), value: money(r.limit, l),
-        sub: r.capped ? T(l, `18 % de votre revenu dépasse le plafond ${YEAR} de ${money(r.cap, l)} : c’est le plafond qui s’applique.`, `18% of your income is above the ${YEAR} cap of ${money(r.cap, l)}: the cap applies.`) : T(l, `18 % de ${money(n(v, 'rg'), l)}, sous le plafond de ${money(r.cap, l)}.`, `18% of ${money(n(v, 'rg'), l)}, under the ${money(r.cap, l)} cap.`),
-        rows: [[T(l, '18 % du revenu gagné 2025', '18% of 2025 earned income'), money(r.pct, l), r.pct], [T(l, `Plafond ${YEAR}`, `${YEAR} dollar limit`), money(r.cap, l), r.cap], [T(l, 'Moins le facteur d’équivalence', 'Minus pension adjustment'), money(-n(v, 'fe'), l)], [T(l, 'Nouveaux droits de l’année', 'New room this year'), money(r.newRoom, l)], [T(l, 'Plus les droits inutilisés', 'Plus unused room'), money(n(v, 'di'), l)]],
-        note: T(l, `Plafond ${YEAR + 1} déjà fixé : ${money(rrspDollarLimit(YEAR + 1), l)}, atteint avec ${money(Math.ceil(rrspDollarLimit(YEAR + 1) / 0.18), l)} de revenu gagné en ${YEAR}.`, `${YEAR + 1} limit already set: ${money(rrspDollarLimit(YEAR + 1), l)}, reached with ${money(Math.ceil(rrspDollarLimit(YEAR + 1) / 0.18), l)} of ${YEAR} earned income.`),
+        label: T(l, `Maximum déductible REER ${Y}`, `${Y} RRSP deduction limit`), value: money(r.limit, l),
+        sub: r.capped ? T(l, `18 % de votre revenu dépasse le plafond ${Y} de ${money(r.cap, l)} : c’est le plafond qui s’applique.`, `18% of your income is above the ${Y} cap of ${money(r.cap, l)}: the cap applies.`) : T(l, `18 % de ${money(n(v, 'rg'), l)}, sous le plafond de ${money(r.cap, l)}.`, `18% of ${money(n(v, 'rg'), l)}, under the ${money(r.cap, l)} cap.`),
+        rows: [[T(l, `18 % du revenu gagné ${Y - 1}`, `18% of ${Y - 1} earned income`), money(r.pct, l), r.pct], [T(l, `Plafond ${Y}`, `${Y} dollar limit`), money(r.cap, l), r.cap], [T(l, 'Moins le facteur d’équivalence', 'Minus pension adjustment'), money(-n(v, 'fe'), l)], [T(l, 'Nouveaux droits de l’année', 'New room this year'), money(r.newRoom, l)], [T(l, 'Plus les droits inutilisés', 'Plus unused room'), money(n(v, 'di'), l)]],
+        note: T(l, `Plafond ${Y + 1} déjà fixé : ${money(rrspDollarLimit(Y + 1), l)}, atteint avec ${money(Math.ceil(rrspDollarLimit(Y + 1) / 0.18), l)} de revenu gagné en ${Y}.`, `${Y + 1} limit already set: ${money(rrspDollarLimit(Y + 1), l)}, reached with ${money(Math.ceil(rrspDollarLimit(Y + 1) / 0.18), l)} of ${Y} earned income.`),
       };
     },
-  }),
+  }; },
 
   /* Cotisation excédentaire REER */
   excedentReer: (l) => ({

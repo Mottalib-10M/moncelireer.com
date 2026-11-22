@@ -22,8 +22,8 @@ hreflang, schémas, llms.txt et liens internes ne lisent que ces fichiers. Modè
   `.r(0.1216)` taux officiel avec ses décimales, `.n()`, `.day(iso)`. Dans `body(h)` : `h.m`, `h.p`,
   `h.r`, `h.n`, `h.day` sont déjà dans la langue de la page.
 - Les montants d'exemple que vous choisissez (un revenu de 75 000 $) peuvent être tapés.
-- 2027 : seul le plafond REER (35 390 $) est publié. Le plafond CELI 2027 est « à venir », jamais une
-  projection. Les tranches 2027 ne sont pas publiées.
+- 2027 : plafond REER (35 390 $, 2028 : 36 390 $) et tranches fédérales (T4127 du 1er janvier 2027, `federal2027`) publiés. Le plafond CELI 2027 est « à venir », jamais une
+  projection. Les tranches provinciales 2027 ne sont pas encore intégrées au moteur.
 
 ## Règles vérifiées par `tests/pages.test.ts`
 
